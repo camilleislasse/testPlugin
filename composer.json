@@ -1,5 +1,5 @@
 {
-    "name": "sylius/plugin-skeleton",
+    "name": "camilleislasse/test-plugin",
     "type": "sylius-plugin",
     "description": "Acme example plugin for Sylius.",
     "keywords": [
