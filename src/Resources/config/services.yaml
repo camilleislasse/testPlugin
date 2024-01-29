@@ -1,0 +1,35 @@
+services:
+    Acme\SyliusExamplePlugin\Form\Extension\TaxRateTypeExtension:
+        autoconfigure: true
+    
+
+    Acme\SyliusExamplePlugin\Component\Core\Taxation\Applicator\OrderItemsTaxesApplicator:
+        decorates: sylius.taxation.order_items_taxes_applicator
+        arguments:
+            - '@sylius.tax_calculator'
+            - '@sylius.factory.adjustment'
+            - '@sylius.integer_distributor'
+            - '@sylius.tax_rate_resolver'        
+            - '@sylius.proportional_integer_distributor'        
+
+    Acme\SyliusExamplePlugin\Component\Core\Taxation\Applicator\OrderShipmentTaxesApplicator:
+        decorates: sylius.taxation.order_shipment_taxes_applicator
+        arguments:
+            - '@sylius.tax_calculator'
+            - '@sylius.custom_factory.adjustment'
+            - '@sylius.tax_rate_resolver'
+  
+    Acme\SyliusExamplePlugin\Component\Core\Taxation\Applicator\OrderItemUnitsTaxesApplicator:
+        decorates: sylius.taxation.order_item_units_taxes_applicator
+        arguments:
+            - '@sylius.tax_calculator'
+            - '@sylius.custom_factory.adjustment'
+            - '@sylius.tax_rate_resolver'              
+            - '@sylius.proportional_integer_distributor'                   
+                
+    Acme\SyliusExamplePlugin\Component\Taxation\Resolver\TaxRateResolver:
+        decorates: sylius.tax_rate_resolver
+        arguments:
+            - '@sylius.repository.tax_rate'
+            - '@sylius.tax_rate_date_eligibility_checker'
+

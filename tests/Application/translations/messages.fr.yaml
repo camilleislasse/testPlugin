@@ -1,0 +1,4 @@
+app:
+    form:
+        tax_rate:
+            customer_group: Groupe de client

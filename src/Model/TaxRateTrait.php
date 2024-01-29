@@ -13,10 +13,26 @@ declare(strict_types=1);
 
 namespace Acme\SyliusExamplePlugin\Model;
 use Sylius\Component\Customer\Model\CustomerGroupInterface;
+use Sylius\Component\Customer\Model\CustomerGroup;
 use Doctrine\ORM\Mapping as ORM;
 
-class TaxRateTrait
+trait TaxRateTrait
 {
-    /** @var CustomerGroupInterface|null */
-    protected $customerGroup;
+    /**
+     * @ORM\ManyToOne(targetEntity="Sylius\Component\Customer\Model\CustomerGroup")
+     * @ORM\JoinColumn(name="customer_group_id", referencedColumnName="id")
+     */
+    private CustomerGroup|null $customerGroup = null;
+
+    public function getCustomerGroup(): ?CustomerGroup
+    {
+        return $this->customerGroup;
+    }
+
+    public function setCustomerGroup(?CustomerGroup $customerGroup): void
+    {
+        $this->customerGroup = $customerGroup;
+    }
+
+
 }
