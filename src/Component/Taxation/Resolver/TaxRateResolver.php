@@ -45,8 +45,6 @@ class TaxRateResolver implements TaxRateResolverInterface
             return null;
         }
 
-        dump($order->getCustomer()->getGroup());
-
         $criteria = array_merge(['category' => $category], $criteria);
         $criteria = array_merge(['customerGroup' => $group], $criteria);
 
